@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AUREA — Descubre lo que vale la pena</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#inicio" aria-label="AUREA, inicio"><span class="brand-mark">A</span><span>AUREA</span></a>
+      <button id="openLocation" class="location" type="button">⌖ <span>Explorar alrededor</span>⌄</button>
+      <button id="musicToggle" class="music-toggle" type="button" aria-pressed="false" title="AUREA Radio">♪ <span>Ambiente</span></button>
+      <button id="openProfile" class="avatar" type="button" aria-label="Abrir perfil">OC</button>
+    </header>
+
+    <section id="inicio" class="hero">
+      <p class="eyebrow">UNA NUEVA FORMA DE DECIDIR</p>
+      <h1>Descubre lo que<br><em>vale la pena.</em></h1>
+      <p>Dinos qué quieres hacer, cuánto tiempo tienes y con cuánto cuentas. AUREA arma el plan.</p>
+      <div class="search-wrap">
+        <label class="search"><span>⌕</span><input id="searchInput" type="search" placeholder="Busca algo especial" autocomplete="off" /><kbd id="searchShortcut" tabindex="0">⌘ K</kbd></label>
+        <div id="searchResults" class="search-results" role="listbox" aria-label="Resultados de búsqueda" hidden></div>
+      </div>
+    </section>
+
+    <section class="content">
+      <section class="plans-section" aria-labelledby="plan-title">
+        <div class="section-head now-head">
+          <div>
+            <p class="eyebrow">CREAR PLAN</p>
+            <h2 id="plan-title">¿Qué plan traes hoy?</h2>
+          </div>
+          <span class="now-label">AUREA arma el resto</span>
+        </div>
+
+        <form id="planForm" class="plan-form compact-plan-form">
+          <label>
+            <span>¿Con quién?</span>
+            <select id="planCompanion">
+              <option value="pareja">💕 Pareja</option>
+              <option value="amigos">👥 Amigos</option>
+              <option value="familia">👨‍👩‍👧 Familia</option>
+              <option value="solo">🧍 Solo</option>
+            </select>
+          </label>
+
+          <label>
+            <span>¿Qué quieres hacer?</span>
+            <select id="planIntent"></select>
+          </label>
+
+          <label>
+            <span>Presupuesto</span>
+            <select id="planBudget">
+              <option value="100">$100</option>
+              <option value="150">$150</option>
+              <option value="200">$200</option>
+              <option value="300" selected>$300</option>
+              <option value="400">$400</option>
+              <option value="500">$500</option>
+              <option value="800">$800</option>
+            </select>
+          </label>
+
+          <label>
+            <span>Tiempo</span>
+            <select id="planTime">
+              <option value="60">1 hora</option>
+              <option value="120">2 horas</option>
+              <option value="180" selected>3 horas</option>
+              <option value="240">4 horas</option>
+              <option value="300">5 horas</option>
+            </select>
+          </label>
+
+          <label>
+            <span>Hora de inicio</span>
+            <select id="planStart">
+              <option value="08:00">08:00</option>
+              <option value="10:00">10:00</option>
+              <option value="12:00">12:00</option>
+              <option value="14:00">14:00</option>
+              <option value="16:00">16:00</option>
+              <option value="18:00" selected>18:00</option>
+              <option value="20:00">20:00</option>
+            </select>
+          </label>
+
+          <label>
+            <span>Distancia</span>
+            <select id="planDistance">
+              <option value="2">Cerca</option>
+              <option value="5" selected>Normal</option>
+              <option value="10">Ampliada</option>
+              <option value="15">Más lejos</option>
+            </select>
+          </label>
+
+          <button class="primary-button" type="submit">ARMAR MI PLAN</button>
+        </form>
+
+        <div id="planResults" class="plan-results"></div>
+        <button id="loadMorePlans" class="text-button" type="button" hidden>Ver más planes →</button>
+      </section>
+
+      <section class="alerts-section alerts-compact" aria-labelledby="alerts-title">
+        <div class="section-head now-head">
+          <div><p class="eyebrow">AUREA AHORA</p><h2 id="alerts-title">Lo que podría afectar tus planes.</h2></div>
+          <span class="now-label"><span id="alertCount">0 activas</span> · DEMO</span>
+        </div>
+        <div id="alertGrid" class="alert-grid"></div>
+        <button id="viewAllAlerts" class="text-button" type="button">Ver todas las alertas →</button>
+      </section>
+
+      <div class="section-head">
+        <div><p class="eyebrow">EXPLORAR</p><h2>Descubre lugares</h2></div>
+        <button class="text-button" id="viewAll" type="button">Ver todo →</button>
+      </div>
+      <div id="categories" class="categories"></div>
+
+      <section class="promo-card">
+        <div>
+          <span class="promo-chip">AUREA PASS — PRÓXIMAMENTE</span>
+          <h2>Descubrir también<br>deja huella.</h2>
+          <p>Estamos preparando una experiencia de beneficios para futuras visitas.</p>
+          <button id="explorePromo" type="button">Conocer AUREA Pass →</button>
+        </div>
+        <div class="promo-art" aria-hidden="true"><span>✦</span><b>5</b><i>SELLOS</i></div>
+      </section>
+
+      <div class="section-head listings-head"><div><p class="eyebrow">NUESTRA CURADURÍA</p><h2>Una elección para hoy</h2></div><span id="resultCount"></span></div>
+      <div id="businessGrid" class="business-grid"></div>
+
+    </section>
+
+    <nav class="bottom-nav" aria-label="Navegación principal">
+      <button class="nav-item active" data-nav="inicio" type="button"><span>⌂</span>Inicio</button>
+      <button class="nav-item" data-nav="explorar" type="button"><span>⌕</span>Explorar</button>
+      <button class="nav-item" data-nav="favoritos" type="button"><span>♡</span>Favoritos</button>
+      <button class="nav-item" data-nav="perfil" type="button"><span>◉</span>Perfil</button>
+    </nav>
+  </main>
+
+  <dialog id="businessDialog" class="business-dialog">
+    <button class="close-dialog" aria-label="Cerrar">×</button>
+    <div id="dialogContent"></div>
+  </dialog>
+
+  <dialog id="planDialog" class="business-dialog">
+    <button class="close-dialog" aria-label="Cerrar">×</button>
+    <div id="planDialogContent"></div>
+  </dialog>
+
+  <dialog id="alertDialog" class="business-dialog alert-dialog">
+    <button class="close-dialog" aria-label="Cerrar">×</button>
+    <div id="alertDialogContent" class="detail-body"></div>
+  </dialog>
+
+  <dialog id="allAlertsDialog" class="business-dialog all-alerts-dialog">
+    <button class="close-dialog" aria-label="Cerrar">×</button>
+    <div class="detail-body">
+      <p class="eyebrow">AUREA AHORA · DEMO</p>
+      <h2>Todas las alertas activas</h2>
+      <div class="alert-toolbar" id="alertFilters" aria-label="Filtros de alertas">
+        <button class="alert-filter selected" data-alert-filter="all" type="button">Todas</button>
+        <button class="alert-filter" data-alert-filter="accident" type="button">Accidentes</button>
+        <button class="alert-filter" data-alert-filter="road_closure" type="button">Cierres</button>
+        <button class="alert-filter" data-alert-filter="flooding" type="button">Clima</button>
+        <button class="alert-filter" data-alert-filter="event" type="button">Eventos</button>
+      </div>
+      <div class="alert-toolbar inline-toolbar">
+        <button class="alert-filter" type="button" data-alert-nearby>Solo cerca</button>
+      </div>
+      <div id="allAlertGrid" class="alert-grid"></div>
+    </div>
+  </dialog>
+
+  <dialog id="noticeDialog" class="notice-dialog">
+    <button class="close-dialog" aria-label="Cerrar">×</button>
+    <div id="noticeContent"></div>
+  </dialog>
+
+  <div id="toast" role="status" aria-live="polite"></div>
+  <audio id="aureaAudio" src="Bossa%20Nova%20Jazz.mp3" loop preload="metadata"></audio>
+  <script src="app.js"></script>
+</body>
+</html>
